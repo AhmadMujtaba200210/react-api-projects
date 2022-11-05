@@ -1,9 +1,10 @@
 import React,{useState,useEffect} from "react"; 
+import './App.css'
 
 function App() {
   const [endPoints,setEndPoints]=useState('');  // using state to 
   const [containers,setContainers]=useState([]);
-  const [finalPoints,setFinalPoint]=useState('');
+  const [finalPoints,setFinalPoint]=useState([]);
   
   useEffect( ()=>{  // will rerender the data when ever we have change in endPoints only
     fetchMe()
@@ -11,13 +12,13 @@ function App() {
 
 
   const fetchMe=()=>{
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': '4dc9e30b52msh53ed92d97147bfap1a7a51jsn7ec3a25a2121',
-      'X-RapidAPI-Host': 'imdb8.p.rapidapi.com'
-    }
-  };
+    const options = {
+      method: 'GET',
+      headers: {
+        'X-RapidAPI-Key': '896d80135emshd0ca526eb10f457p1e522bjsn03366f97dbbb',
+        'X-RapidAPI-Host': 'online-movie-database.p.rapidapi.com'
+      }
+    };
   
   fetch(`https://imdb8.p.rapidapi.com/auto-complete?q=+${endPoints}`, options)
     .then(response => {
@@ -38,21 +39,25 @@ function App() {
       setFinalPoint(endPoints)
     }
   return (
+    <>
     <div className="App">
 
     <form onSubmit={submitHandler}>
       <input type="text" value={endPoints} onChange={onChangeHandler}/>
       <button type='submit'>Submit</button>
     </form>
-      {containers.map((item)=>{
+    <div className="element">
+      {containers.map((item,index)=>{
         return (
-          <div>
-          <img src={item.i.imageUrl} alt="reload the page" />
+          <div key={index} className="element-div">
+            <img src={item?.i?.imageUrl} alt="" />
           <p>{item.l}</p>
           </div>
         )
       })}
+      </div>
     </div>
+    </>
   );
 }
 
