@@ -1,40 +1,34 @@
 import React from "react";
 import styled from "styled-components";
-
+import { AiOutlineSearch } from "react-icons/ai";
+import { BsFillBackspaceFill } from "react-icons/bs";
 const SearchBarContainer= styled.div`
     display:flex;
-    flex-direction:column;
-    width:34rem;
+    width:32rem;
     height:3.8rem;
-    background-color:#fff;
+    background-color:#blue;
     border-radius:6px;
     box-shadow:0px 2px 12px 3px rgba(0,0,0,0.14);
-    overflow:hidden;
+    align-items:center;
+    align-content:center;
+    
 `;
 
-const SearchBarInputContainer= styled.div`
-    width:100%;
-    min-height:4rem;
-    display:flex;
-    align-items:center;
-    position:relative;
-    padding:2px 15px;
-`;
+
 
 const SearchInput=styled.input`
     width:100%;
     height:100%;
     outline:none;
     border:none;
-    font-size:25px;
+    font-size:18px;
     color:#12112e;
     border-radius:6px;
     font-weight:500;
-    background-color:transparent;
-    padding:15px;
+    padding:0;
+    margin:0;
 
     &:focus{
-    outline:none;
     &::placeholder{
         opacity:0;
     }
@@ -46,16 +40,36 @@ const SearchInput=styled.input`
     }
     
 `;
+const SearchIcon=styled.span`
+    color:#bebebe;
+   
+    cursor:pointer;
+    margin-top:5px;
+   
+    font-size:30px;
+    
+`;
 
 
-
+const CloseIcon=styled.span`
+    color:#bebebe;
+    vertical-align:middle;
+    cursor:pointer;
+    transition:all 200ms ease-in-out;
+    font-size:30px;
+    margin-top:8px;
+    
+    &:hover{
+        color:#beebee;
+    }
+`;
 
 export function SearchBar(props){
     return(
         <SearchBarContainer>
-            <SearchBarInputContainer>
+                <SearchIcon><AiOutlineSearch/></SearchIcon>
                 <SearchInput placeholder="Search for Movies/Series"></SearchInput>
-            </SearchBarInputContainer>
+                <CloseIcon><BsFillBackspaceFill/></CloseIcon>
         </SearchBarContainer>
     )
 }
