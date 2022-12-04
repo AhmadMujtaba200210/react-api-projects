@@ -21,7 +21,7 @@ const SearchBarInputContainer= styled.div`
     padding:2px 15px;
 `;
 
-const SearchInput=styled.div`
+const SearchInput=styled.input`
     width:100%;
     height:100%;
     outline:none;
@@ -31,8 +31,9 @@ const SearchInput=styled.div`
     border-radius:6px;
     font-weight:500;
     background-color:transparent;
+    padding:15px;
 
-    &::focus{
+    &:focus{
     outline:none;
     &::placeholder{
         opacity:0;
@@ -40,7 +41,7 @@ const SearchInput=styled.div`
     }
 
     &::placeholder{
-        color:#bebebebe;
+        color:#bebebe;
         transition:all 250ms ease-in-out;
     }
     
