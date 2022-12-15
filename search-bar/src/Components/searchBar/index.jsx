@@ -59,13 +59,15 @@ const SearchIcon = styled.span`
     vertical-align: middle;
 `;
 
-const CloseIcon = styled.span`
+const CloseIcon = styled.button`
     color: #bebebe;
     font-size: 23px;
     vertical-align: middle;
     transition: all 200ms ease-in-out;
     cursor: pointer;
     margin-right: 20px;
+    background-color: transparent;
+    border:none;
     &:hover {
     color: #dfdfdf;
     }
@@ -86,26 +88,34 @@ export function SearchBar(){
     const [ref,isClickedOutside] = useClickOutside();
     const expandedContainer=()=> setExpanded(true);
     const collapseContainer=()=> setExpanded(false);
-
+    const [value,setValue]= useState("");
+    
     useEffect(() => {
         if (isClickedOutside) collapseContainer();
     }, [isClickedOutside]);
+
+    const clearBtn=e=>{
+        e.preventDefault();
+        collapseContainer();
+        setValue("");
+    }
+
+    const changeHandler=e=>{
+        setValue(e.target.value);
+    }
     return(
         <Container>
             <Row>
                 <Col xs={12} md={8}>
+                    <form>
         <SearchBarContainer  animate={isExpanded ? "expanded":"collapsed"} variants={containerVariants} ref={ref}>
-            {/* 
-                animate: will decide animation depends on expand or collapse by using variant
-                variant: will tells us the expand or collapse animation from function containerVariants
-                ref: will true if we click outside the SearchBarContainer and false if we click inside it 
-            */}
             <SearchInputContainer>
             <SearchIcon><AiOutlineSearch/></SearchIcon>
-                <SearchInput placeholder="Search for Movies/Series" onFocus={expandedContainer}></SearchInput>
-                <CloseIcon><BsFillBackspaceFill/></CloseIcon>
+                <SearchInput placeholder="Search for Movies/Series" onFocus={expandedContainer} value={value} onChange={changeHandler}></SearchInput>
+                <CloseIcon onClick={clearBtn}><BsFillBackspaceFill/></CloseIcon>
             </SearchInputContainer>
         </SearchBarContainer>
+                    </form>
                 </Col>
             </Row>
         </Container>
