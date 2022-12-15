@@ -1,5 +1,4 @@
 import React,{useState,useEffect} from "react"; 
-import axios from "axios";
 import './App.css'
 
 function App() {
@@ -10,7 +9,6 @@ function App() {
   useEffect( ()=>{  // will rerender the data when ever we have change in endPoints only
     fetchMe()
   },[finalPoints])// rerendering every word when we hit the submit button instead of every letter 
-
 
   const fetchMe=()=>{
     const options = {

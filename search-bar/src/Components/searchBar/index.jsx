@@ -1,11 +1,11 @@
 
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillBackspaceFill } from "react-icons/bs";
 import { Container,Row,Col } from "react-grid-system";
-import {AnimatePresence, motion} from 'framer-motion/dist/framer-motion';
-
+import { motion} from 'framer-motion/dist/framer-motion';
+import {useClickOutside} from "react-click-outside-hook";
 const SearchBarContainer = styled(motion.div)`
     display: flex;
     flex-direction: column;
@@ -81,16 +81,25 @@ const containerVariants={
 }
 
 
-export function SearchBar(props){
+export function SearchBar(){
     const [isExpanded,setExpanded] = useState(false);
+    const [ref,isClickedOutside] = useClickOutside();
     const expandedContainer=()=> setExpanded(true);
-    const collapsedContainer=()=> setExpanded(false);
+    const collapseContainer=()=> setExpanded(false);
 
+    useEffect(() => {
+        if (isClickedOutside) collapseContainer();
+    }, [isClickedOutside]);
     return(
         <Container>
             <Row>
                 <Col xs={12} md={8}>
-        <SearchBarContainer  animate={isExpanded ? "expanded":"collapsed"} variants={containerVariants}>
+        <SearchBarContainer  animate={isExpanded ? "expanded":"collapsed"} variants={containerVariants} ref={ref}>
+            {/* 
+                animate: will decide animation depends on expand or collapse by using variant
+                variant: will tells us the expand or collapse animation from function containerVariants
+                ref: will true if we click outside the SearchBarContainer and false if we click inside it 
+            */}
             <SearchInputContainer>
             <SearchIcon><AiOutlineSearch/></SearchIcon>
                 <SearchInput placeholder="Search for Movies/Series" onFocus={expandedContainer}></SearchInput>
