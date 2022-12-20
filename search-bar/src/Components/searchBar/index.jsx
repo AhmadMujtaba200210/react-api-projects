@@ -89,7 +89,21 @@ export function SearchBar(){
     const expandedContainer=()=> setExpanded(true);
     const collapseContainer=()=> setExpanded(false);
     const [value,setValue]= useState("");
+    const [container,setContainer]=useState([]);
+
+    const options = {
+        method: 'GET',
+        headers: {
+            'X-RapidAPI-Key': '4dc9e30b52msh53ed92d97147bfap1a7a51jsn7ec3a25a2121',
+            'X-RapidAPI-Host': 'opentripmap-places-v1.p.rapidapi.com'
+        }
+    };
     
+    fetch(`https://opentripmap-places-v1.p.rapidapi.com/%7Blang%7D/places/geoname?q=+${value}`, options)
+        .then(response => response.json())
+        .then(data => setContainer(data.d)) //storing data from server
+        .catch(err => console.error(err));
+
     useEffect(() => {
         if (isClickedOutside) collapseContainer();
     }, [isClickedOutside]);
