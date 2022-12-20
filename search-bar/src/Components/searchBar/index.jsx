@@ -90,7 +90,6 @@ export function SearchBar(){
     const collapseContainer=()=> setExpanded(false);
     const [value,setValue]= useState("");
     const [container,setContainer]=useState([]);
-
     const options = {
         method: 'GET',
         headers: {
@@ -98,10 +97,9 @@ export function SearchBar(){
             'X-RapidAPI-Host': 'opentripmap-places-v1.p.rapidapi.com'
         }
     };
-    
     fetch(`https://opentripmap-places-v1.p.rapidapi.com/%7Blang%7D/places/geoname?q=+${value}`, options)
         .then(response => response.json())
-        .then(data => setContainer(data.d)) //storing data from server
+        .then(data => setContainer(data)) //storing data from server
         .catch(err => console.error(err));
 
     useEffect(() => {
@@ -121,15 +119,26 @@ export function SearchBar(){
         <Container>
             <Row>
                 <Col xs={12} md={8}>
-                    <form>
         <SearchBarContainer  animate={isExpanded ? "expanded":"collapsed"} variants={containerVariants} ref={ref}>
+        <form>
             <SearchInputContainer>
+                {container.map((item,index)=>{
+                    return (
+                        <div key={index} class="container">
+                            <ul>
+                                <li>{item.country}</li>
+                                <li>{item.name}</li>
+                            </ul>
+                        </div>
+                    )
+                })}
             <SearchIcon><AiOutlineSearch/></SearchIcon>
                 <SearchInput placeholder="Search for Movies/Series" onFocus={expandedContainer} value={value} onChange={changeHandler}></SearchInput>
                 <CloseIcon onClick={clearBtn}><BsFillBackspaceFill/></CloseIcon>
+                
             </SearchInputContainer>
+            </form>
         </SearchBarContainer>
-                    </form>
                 </Col>
             </Row>
         </Container>
