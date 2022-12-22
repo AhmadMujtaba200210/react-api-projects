@@ -9,7 +9,7 @@ function App() {
   useEffect( ()=>{  // will rerender the data when ever we have change in endPoints only
     fetchMe()
   },[finalPoints])// rerendering every word when we hit the submit button instead of every letter 
-
+  
   const fetchMe=()=>{
     const options = {
       method: 'GET',
@@ -25,7 +25,7 @@ function App() {
     })
     .then(data => {
       setContainers(data.d);// storing the data returned from the server respective to query
-    })
+    }) 
     .catch(err => console.error(err));
   }
 

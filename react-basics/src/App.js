@@ -1,30 +1,21 @@
-import React,{ useState } from 'react';
-// import "./style.css";
+import { useMemo } from "react";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 
-function App() {
-  
-  var [count, setCount] = useState(0);
-  return (
-    <>
-    <div className="App">
-      You pressed {count} times.
-      <button className="buttonClick" onClick={()=> setCount(count+1)} style={{height:30, width:60 }}>
-        Click me!
-      </button>
+export default function Home() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: "AIzaSyDRWtcX7_LdxKhdS1U3yIX-NDfEYgJEoqM",
+  });
 
-    </div>
-    <div style={{backgroundColor: 'lime', color: 'white'}}>Avocado</div>
-    <div
-  style={{
-    backgroundColor: isActive ? 'violet' : '',
-    color: isActive ? 'white' : '',
-  }}
->
-  Hello world
-</div>
-
-    </>
-  );
+  if (!isLoaded) return <div>Loading...</div>;
+  return <Map />;
 }
 
-export default App;
+function Map() {
+  const center = useMemo(() => ({ lat: 44, lng: -80 }), []);  
+
+  return (
+    <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
+      <Marker position={center} />
+    </GoogleMap>
+  );
+}
