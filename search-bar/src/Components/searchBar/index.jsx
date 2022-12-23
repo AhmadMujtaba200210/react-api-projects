@@ -4,9 +4,10 @@ import React, { useState,useEffect } from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { BsFillBackspaceFill } from "react-icons/bs";
 import { Container,Row,Col } from "react-grid-system";
-import { motion} from 'framer-motion';
 import {useClickOutside} from "react-click-outside-hook";
+import { motion } from "framer-motion";
 import "./style.css";
+
 
 
 const containerVariants={
@@ -16,6 +17,12 @@ const containerVariants={
     collapsed:{
         height:"3.8em",
     }
+}
+
+const transitionContainer={
+    type:'spring',
+    damping:22,
+    stiffness:150
 }
 
 
@@ -47,8 +54,8 @@ export function SearchBar(){
         <Container>
             <Row>
                 <Col xs={12} md={8}>
-                    <motion.div className="div SearchBarContainer" animate={isExpanded ? "expanded":"collapsed"} variants={containerVariants} ref={ref}>
-                    <form action="">
+                    <motion.div animate={isExpanded ? "expanded":"collapsed"} transition={transitionContainer} className="SearchBarContainer" variants={containerVariants} ref={ref}>
+                    <form>
                     <div className="SearchInputContainer">
                     {}
                     <span className="SearchIcon"><AiOutlineSearch/></span>
