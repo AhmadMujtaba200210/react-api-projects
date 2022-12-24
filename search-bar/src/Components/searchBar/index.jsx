@@ -7,6 +7,7 @@ import { Container,Row,Col } from "react-grid-system";
 import {useClickOutside} from "react-click-outside-hook";
 import { motion } from "framer-motion";
 import "./style.css";
+import { PlacesAutoComplete } from "../placesautocomplete";
 
 
 
@@ -31,14 +32,14 @@ export function SearchBar(){
     const [ref,isClickedOutside] = useClickOutside();
     const expandedContainer=()=> setExpanded(true);
     const collapseContainer=()=> setExpanded(false);
-    const [value,setValue]= useState("");
     const [container,setContainer]=useState([]);
+    const [value,setValue]=useState([]);
 
     useEffect(() => {
         if (isClickedOutside) collapseContainer();
     }, [isClickedOutside]);
 
-    const clearBtn=e=>{
+    const clearBtn=(e)=>{
         e.preventDefault();
         collapseContainer();
         setValue("");
@@ -48,21 +49,16 @@ export function SearchBar(){
         setValue(e.target.value);
     }
 
-    {/* Auto complete search functionality */}
-    
     return(
         <Container>
             <Row>
                 <Col xs={12} md={8}>
                     <motion.div animate={isExpanded ? "expanded":"collapsed"} transition={transitionContainer} className="SearchBarContainer" variants={containerVariants} ref={ref}>
-                    <form>
                     <div className="SearchInputContainer">
-                    {}
                     <span className="SearchIcon"><AiOutlineSearch/></span>
-                    <input type="text" className="SearchInput" placeholder="Search for Movies/Series"  onFocus={expandedContainer} value={value} onChange={changeHandler}/>
+                    <PlacesAutoComplete className="SearchInput" placeholder="Search for Movies/Series"  onFocus={expandedContainer} value={value} onChange={changeHandler} />
                     <button onClick={clearBtn} className="CloseIcon"><BsFillBackspaceFill/></button>
                     </div>
-                    </form>
                     </motion.div>
                 </Col>
             </Row>
