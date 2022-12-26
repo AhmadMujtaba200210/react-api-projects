@@ -43,6 +43,7 @@ ul{
     margin-right: 10px;
     margin-top: 6px;
     vertical-align: middle;
+    background-color: pink;
 }
 
 .CloseIcon{
@@ -52,7 +53,7 @@ ul{
     transition: all 200ms ease-in-out;
     cursor: pointer;
     margin-right: 20px;
-    background-color: transparent;
+    background-color: blue;
     border:none;
     
 }
