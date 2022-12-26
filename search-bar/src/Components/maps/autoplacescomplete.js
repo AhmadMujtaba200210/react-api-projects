@@ -20,13 +20,14 @@ export const PlacesAutocomplete = ({ setSelected }) => {
     };
 
     return (
-        <Combobox onSelect={handleSelect}>
+        <Combobox onSelect={handleSelect} className="places-container"
+        >
             <ComboboxInput
                 value={value}
                 onChange={(e) => setValue(e.target.value)}
                 disabled={!ready}
-                className="places-container"
                 placeholder="Search an address"
+                onSelect={handleSelect}
             />
             <ComboboxPopover>
                 <ComboboxList>
