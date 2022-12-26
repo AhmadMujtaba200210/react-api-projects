@@ -76,10 +76,19 @@ export function SearchBar() {
                     <motion.div animate={isExpanded ? "expanded" : "collapsed"} transition={transitionContainer} className="SearchBarContainer" variants={containerVariants} ref={ref}>
                         <div className="SearchInputContainer">
                             <span className="SearchIcon"><AiOutlineSearch /></span>
-
+                            
+                                <input type="text"
+                                    value={value}
+                                    onChange={(e) => setValue(e.target.value)}
+                                    disabled={!ready}
+                                    placeholder="Search an address"
+                                    className="places"
+                                    onFocus={expandedContainer}
+                                />
+                                
                             {/* Combobox start */}
 
-                            <Combobox onSelect={handleSelect} className="places-container"
+                            {/* <Combobox onSelect={handleSelect} className="places-container"
                             >
                                 <ComboboxInput
                                     value={value}
@@ -97,7 +106,7 @@ export function SearchBar() {
                                     </ComboboxList>
                                 </ComboboxPopover>
                             </Combobox>
-
+ */}
 
 
                             {/* ComboBox end */}
