@@ -1,13 +1,15 @@
-import React from 'react';
-// import { SearchBar } from './Components/searchBar';
-// import { Map } from './Components/maps/Maps';
+import {  useLoadScript } from "@react-google-maps/api";
+import './style.css';
+import { Map } from "./Components/maps/maptest";
+export default function MapHome() {
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    libraries:['places'],
+  });
 
-import { MapTest2 } from './Components/maps/Maps';
-function App() {
-  
+  if (!isLoaded) return <div>Loading...</div>;
   return (
-    <MapTest2 />
+  <Map />
   );
 }
 
-export default App;
