@@ -56,7 +56,7 @@ export function SearchBar() {
                     <motion.div animate={isExpanded ? "expanded" : "collapsed"} transition={transitionContainer} className="SearchBarContainer" variants={containerVariants} ref={ref}>
                         <div className="SearchInputContainer">
                             <span className="SearchIcon"><AiOutlineSearch /></span>
-                            <PlacesAutocomplete className="places-container" setSelected={setSelected} />
+                            <PlacesAutocomplete className="places-container" setSelected={setSelected}  placeholder="Search for Series/Shows" onFocus={expandedContainer} ref={ref} onChange={changeHandler}/>
                             <button onClick={clearBtn} className="CloseIcon"><BsFillBackspaceFill /></button>
                         </div>
                     </motion.div>
