@@ -7,12 +7,12 @@ export function Map() {
   const center = useMemo(() => ({ lat: 40, lng: 80 }), []);
   return (
     <>
-      <div>
+      {/* <div>
         <SearchBar />
-      </div>
-      {/* <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
+      </div> */}
+      <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
         <MarkerF position={center} />
-      </GoogleMap> */}
+      </GoogleMap>
     </>
   );
 }
