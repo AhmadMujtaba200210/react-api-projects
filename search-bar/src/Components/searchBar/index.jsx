@@ -77,7 +77,7 @@ export function SearchBar() {
                         <div className="SearchInputContainer">
                             <span className="SearchIcon"><AiOutlineSearch /></span>
                             
-                                {/* <input type="text"
+                                <input type="text"
                                     value={value}
                                     onChange={(e) => setValue(e.target.value)}
                                     disabled={!ready}
@@ -85,47 +85,17 @@ export function SearchBar() {
                                     className="places"
                                     onFocus={expandedContainer}
                                 />
-                                 */}
-                            {/* Combobox start */}
-
-                            <Combobox onSelect={handleSelect} 
-                            >
-                                <ComboboxInput
-                                    value={value}
-                                    onChange={(e) => setValue(e.target.value)}
-                                    disabled={!ready}
-                                    placeholder="Search an address"
-                                    onFocus={expandedContainer}
-                                    // onSelect={handleSelect}
-                                />
-                                <ComboboxPopover>
-                                    <ComboboxList>
-                                       
-                                    </ComboboxList>
-                                </ComboboxPopover>
-                            </Combobox>
-
-
-
-                            {/* ComboBox end */}
-
-                            <button onClick={clearBtn} className="CloseIcon"><BsFillBackspaceFill /></button>
+                                
+                            <button type="reset" onClick={clearBtn} className="CloseIcon"><BsFillBackspaceFill /></button>
                         </div>
-                        {/* {
+                        {
                             status==="OK"&&
                                 data.map(({place_id,description})=>(
                                     <div key={place_id}>
                                         {description}
                                     </div>
                                 ))
-                        } */}
-                         {status === "OK" &&
-                                            data.map(({ place_id, description }) => (
-                                               <ComboboxOption key={place_id} value={description}/>
-                                                // <div key={place_id}>
-                                                //     {description}
-                                                // </div>
-                                            ))}
+                        }
                     </motion.div>
                 </Col>
             </Row>
